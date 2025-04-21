@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSS Positioning & Float Demo</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #007BFF;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section {
+      background-color: white;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2 {
+      margin-top: 0;
+    }
+
+    .fixed-box {
+      background-color: #ffc107;
+      padding: 10px 15px;
+      border-radius: 6px;
+      border: 1px solid #e0a800;
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 999;
+      font-weight: bold;
+    }
+
+    .static-box,
+    .relative-box,
+    .absolute-box,
+    .float-box {
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .static-box {
+      background-color: #f0f0f0;
+      border: 2px solid #ccc;
+    }
+
+    .relative-box {
+      background-color: #d0f0c0;
+      border: 2px solid green;
+      position: relative;
+      top: 20px;
+      left: 30px;
+    }
+
+    .container {
+      position: relative;
+      height: 400px;
+      border: 2px dashed #aaa;
+      margin-top: 30px;
+      padding: 10px;
+    }
+
+    .absolute-box {
+      background-color: #fcd5ce;
+      border: 2px solid red;
+      position: absolute;
+      top: 60px;
+      left: 40px;
+      width: 200px;
+    }
+
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    .float-box {
+      float: left;
+      width: 250px;
+      background-color: #fff3cd;
+      border: 2px solid orange;
+      margin: 0 20px 20px 0;
+    }
+
+    .float-content {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="fixed-box">Fixed Box</div>
+
+  <header>
+    <h1>CSS Positioning & Float Demo</h1>
+  </header>
+
+  <main>
+
+    <section class="static-box">
+      <h2>Static Position</h2>
+      <p>This box uses the default static positioning.</p>
+    </section>
+
+    <section class="relative-box">
+      <h2>Relative Position</h2>
+      <p>This box is moved relative to its normal flow using <code>top</code> and <code>left</code>.</p>
+    </section>
+
+    <section class="container">
+      <h2>Absolute Position</h2>
+      <p>The box below is absolutely positioned inside this relatively positioned container.</p>
+      <div class="absolute-box">
+        <strong>Absolute Box</strong>
+        <p>Positioned absolutely inside the container.</p>
+      </div>
+    </section>
+
+    <section class="clearfix">
+      <h2>Float Position</h2>
+      <div class="float-box">
+        <strong>Float Left Box</strong>
+        <p>This box is floated to the left.</p>
+      </div>
+      <div class="float-content">
+        <p>
+          This text flows around the floated box. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+          Vivamus sagittis, sem sit amet convallis accumsan, sapien odio consequat velit, vitae mattis magna turpis vel nibh. 
+          Aenean non erat nec nulla finibus dapibus nec a purus. Donec vel magna a nisl tincidunt scelerisque.
+        </p>
+        <p>
+          More content to show wrapping and how float behaves in layout. After applying clearfix, everything below continues normally.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

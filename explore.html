@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Clone - Explore</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="/images/logo.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Additional CSS for explore page -->
+    <style>
+        .explore-container {
+            margin-top: 20px;
+        }
+        
+        .explore-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .explore-header h1 {
+            font-size: 1.8rem;
+        }
+        
+        .explore-tabs {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            scrollbar-width: none;
+        }
+        
+        .explore-tabs::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .explore-tab {
+            padding: 8px 15px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        
+        .explore-tab.active {
+            background: var(--gradient);
+            color: white;
+        }
+        
+        .explore-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+        
+        .explore-item {
+            position: relative;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+        }
+        
+        .explore-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .explore-item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .explore-item:hover .explore-item-overlay {
+            opacity: 1;
+        }
+        
+        .explore-item-stats {
+            display: flex;
+            gap: 20px;
+            color: white;
+        }
+        
+        .explore-item-stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .explore-item-stat i {
+            font-size: 18px;
+        }
+        
+        .explore-popular {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary-color);
+            color: white;
+            font-size: 0.8rem;
+            padding: 3px 8px;
+            border-radius: 3px;
+        }
+        
+        @media (max-width: 768px) {
+            .explore-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .explore-header h1 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .explore-tab {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .explore-item-stats {
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Menu toggle button for mobile -->
+    <button style="position: absolute;" class="menu-toggle">
+        <i class="ri-menu-line" id="menu-icon"></i>
+    </button>
+    
+    <!--sidebar-->
+    <div class="sidebar">
+        <a href="feed.html" class="logo">
+            <img src="images/logo.png" alt="logo">
+        </a>
+        <!--profile image-->
+        <div class="profile">
+            <div class="profile-img">
+                <img src="images/profile.jpg" alt="Test">
+            </div>
+            <div class="name">
+                <h1>ukasha khursheed</h1>
+                <img src="images/verify.png" alt="verify">
+            </div>
+            <span>@student</span>
+        </div>
+        <!--about-->
+        <div class="about">
+            <!--box1-->
+            <div class="box">
+                <h3>54</h3>
+                <span>Posts</span>
+            </div>
+            <!--box2-->
+            <div class="box">
+                <h3>14.4k</h3>
+                <span>Followers</span>
+            </div>
+            <!--box3-->
+            <div class="box">
+                <h3>13</h3>
+                <span>Following</span>
+            </div>
+        </div>
+        
+        <!--menu-->
+        <div class="menu">
+            <a href="feed.html">
+                <span class="icon">
+                    <i class="ri-function-line"></i>
+                </span>
+                Feed
+            </a>
+
+            <a href="notification.html">
+                <span class="icon">
+                    <i class="ri-notification-4-line"></i>
+                </span>
+                Notification
+            </a>
+
+            <a href="explore.html" class="active">
+                <span class="icon">
+                    <i class="ri-search-line"></i>
+                </span>
+                Explore
+            </a>
+            
+            <a href="messages.html">
+                <span class="icon">
+                    <i class="ri-mail-unread-fill"></i>
+                </span>
+                Message
+            </a>
+
+            <a href="stats.html">
+                <span class="icon">
+                    <i class="ri-bar-chart-2-fill"></i>
+                </span>
+                Stats
+            </a>
+            
+            <a href="settings.html">
+                <span class="icon">
+                    <i class="ri-settings-5-line"></i>
+                </span>
+                Settings
+            </a>
+            
+            <a href="index.html">
+                <span class="icon">
+                    <i class="ri-logout-box-r-line"></i>
+                </span>
+                Logout
+            </a>
+        </div>
+    </div>
+    
+    <!--main home-->
+    <div class="main-home">
+        <div class="header">
+            <!--search-->
+            <div class="search">
+                <i class="ri-search-line"></i>
+                <input type="text" name="" id="" placeholder="Search">
+            </div>
+            <div class="header-content">
+                <a href="notification.html" style="text-decoration: none; margin-top: 6px;">
+                    <i class="ri-notification-4-line"></i>
+                </a>
+                <a href="messages.html" style="text-decoration: none; margin-top: 6px;">
+                    <i class="ri-mail-unread-fill"></i>
+                </a>
+                <!--button-->
+                <a href="#" class="btn">
+                    <i class="ri-add-circle-fill"></i>
+                    <div class="btn-text">
+                        Add Photos
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Explore Content -->
+        <div class="explore-container">
+            <div class="explore-header">
+                <h1>Explore</h1>
+            </div>
+            
+            <div class="explore-tabs">
+                <div class="explore-tab active">For You</div>
+                <div class="explore-tab">Trending</div>
+                <div class="explore-tab">Photography</div>
+                <div class="explore-tab">Travel</div>
+                <div class="explore-tab">Food</div>
+                <div class="explore-tab">Fashion</div>
+                <div class="explore-tab">Art</div>
+                <div class="explore-tab">Music</div>
+                <div class="explore-tab">Sports</div>
+            </div>
+            
+            <!-- Explore Grid -->
+            <div class="explore-grid">
+                <!-- Explore Item 1 -->
+                <div class="explore-item">
+                    <img src="images/post1.jpg" alt="explore post">
+                    <div class="explore-item-overlay">
+                        <div class="explore-item-stats">
+                            <div class="explore-item-stat">
+                                <i class="ri-heart-fill"></i>
+                                <span>5.2k</span>
+                            </div>
+                            <div class="explore-item-stat">
+                                <i class="ri-chat-3-fill"></i>
+                                <span>120</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="explore-popular">Popular</div>
+                </div>
+                
+                <!-- Explore Item 2 -->
+                <div class="explore-item">
+                    <img src="images/profile2.jpg" alt="explore post">
+                    <div class="explore-item-overlay">
+                        <div class="explore-item-stats">
+                            <div class="explore-item-stat">
+                                <i class="ri-heart-fill"></i>
+                                <span>3.8k</span>
+                            </div>
+                            <div class="explore-item-stat">
+                                <i class="ri-chat-3-fill"></i>
+                                <span>95</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Explore Item 3 -->
+                <div class="explore-item">
+                    <img src="images/profile3.jpg" alt="explore post">
+                    <div class="explore-item-overlay">
+                        <div class="explore-item-stats">
+                            <div class="explore-item-stat">
+                                <i class="ri-heart-fill"></i>
+                                <span>7.1k</span>
+                            </div>
+                            <div class="explore-item-stat">
+                                <i class="ri-chat-3-fill"></i>
+                                <span>210</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="explore-popular">Popular</div>
+                </div>
+                
+                <!-- Explore Item 4 -->
+                <div class="explore-item">
+                    <img src="images/profile4.jpg" alt="explore post">
+                    <div class="explore-item-overlay">
+                        <div class="explore-item-stats">
+                            <div class="explore-item-stat">
+                                <i class="ri-heart-fill"></i>
+                                <span>2.4k</span>
+                            </div>
+                            <div class="explore-item-stat">
+                                <i class="ri-chat-3-fill"></i>
+                                <span>78</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Explore Item 5 -->
+                <div class="explore-item">
+                    <img src="images/profile5.jpg" alt="explore post">
+                    <div class="explore-item-overlay">
+                        <div class="explore-item-stats">
+                            <div class="explore-item-stat">
+                                <i class="ri-heart-fill"></i>
+                                <span>4.3k</span>
+                            </div>
+                            <div class="explore-item-stat">
+                                <i class="ri-chat-3-fill"></i>
+                                <span>142</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Explore Item 6 -->
+                <div class="explore-item">
+                    <img src="images/profile6.jpg" alt="explore post">
+                    <div class="explore-item-overlay">
+                        <div class="explore-item-stats">
+                            <div class="explore-item-stat">
+                                <i class="ri-heart-fill"></i>
+                                <span>9.6k</span>
+                            </div>
+                            <div class="explore-item-stat">
+                                <i class="ri-chat-3-fill"></i>
+                                <span>315</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="explore-popular">Popular</div>
+                </div>
+                
+                <!-- Explore Item 7 -->
+                <div class="explore-item">
+                    <img src="images/profile.jpg" alt="explore post">
+                    <div class="explore-item-overlay">
+                        <div class="explore-item-stats">
+                            <div class="explore-item-stat">
+                                <i class="ri-heart-fill"></i>
+                                <span>3.1k</span>
+                            </div>
+                            <div class="explore-item-stat">
+                                <i class="ri-chat-3-fill"></i>
+                                <span>89</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Explore Item 8 -->
+                <div class="explore-item">
+                    <img src="images/profile2.jpg" alt="explore post">
+                    <div class="explore-item-overlay">
+                        <div class="explore-item-stats">
+                            <div class="explore-item-stat">
+                                <i class="ri-heart-fill"></i>
+                                <span>5.7k</span>
+                            </div>
+                            <div class="explore-item-stat">
+                                <i class="ri-chat-3-fill"></i>
+                                <span>182</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="explore-popular">Popular</div>
+                </div>
+                
+                <!-- Explore Item 9 -->
+                <div class="explore-item">
+                    <img src="images/profile3.jpg" alt="explore post">
+                    <div class="explore-item-overlay">
+                        <div class="explore-item-stats">
+                            <div class="explore-item-stat">
+                                <i class="ri-heart-fill"></i>
+                                <span>4.9k</span>
+                            </div>
+                            <div class="explore-item-stat">
+                                <i class="ri-chat-3-fill"></i>
+                                <span>163</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Add more explore items as needed -->
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            const sidebar = document.querySelector('.sidebar');
+            const menuIcon = document.getElementById('menu-icon');
+            
+            sidebar.classList.toggle('active');
+            
+            // Change icon based on sidebar state
+            if (sidebar.classList.contains('active')) {
+                menuIcon.classList.remove('ri-menu-line');
+                menuIcon.classList.add('ri-close-line');
+            } else {
+                menuIcon.classList.remove('ri-close-line');
+                menuIcon.classList.add('ri-menu-line');
+            }
+        });
+        
+        // Tab switching functionality
+        const tabs = document.querySelectorAll('.notification-tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                // You would normally filter notifications here based on the selected tab
+            });
+        });
+    </script>
+
+</body>
+
+</html>

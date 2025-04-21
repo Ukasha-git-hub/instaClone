@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Instagram Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="/images/logo.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        /* Settings Page Specific Styles */
+.settings-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.settings-title h1 {
+    font-size: 1.8rem;
+}
+
+.settings-content {
+    margin-top: 2rem;
+}
+
+.settings-section {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.settings-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.settings-option {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.settings-option:last-child {
+    border-bottom: none;
+}
+
+.settings-option:hover {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.option-icon {
+    min-width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+.option-icon i {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.option-details {
+    flex-grow: 1;
+}
+
+.option-details h3 {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.option-details p {
+    font-size: 0.8rem;
+    color: #777;
+}
+
+.option-action {
+    margin-left: 1rem;
+    color: #aaa;
+}
+
+.option-action i {
+    font-size: 1.2rem;
+}
+
+.option-toggle {
+    margin-left: 1rem;
+}
+
+.current-option {
+    font-size: 0.9rem;
+    color: #777;
+    margin-right: 0.5rem;
+}
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--primary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 24px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Logout Button */
+.logout-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #e74c3c;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.logout-btn i {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.logout-btn:hover {
+    background: #ffebee;
+    border-color: #ffcdd2;
+}
+
+/* Responsive Media Queries for Settings Page */
+@media (max-width: 768px) {
+    .settings-section {
+        padding: 1rem;
+    }
+    
+    .option-details p {
+        display: none;
+    }
+    
+    .option-icon {
+        min-width: 30px;
+        height: 30px;
+    }
+    
+    .option-icon i {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .settings-title h1 {
+        font-size: 1.5rem;
+    }
+    
+    .settings-section h2 {
+        font-size: 1.1rem;
+    }
+    
+    .option-details h3 {
+        font-size: 0.9rem;
+    }
+    
+    .logout-btn {
+        font-size: 0.9rem;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <!-- Menu toggle button for mobile -->
+    <button style="position: absolute;" class="menu-toggle">
+        <i class="ri-menu-line" id="menu-icon"></i>
+    </button>
+    
+    <!--sidebar-->
+    <div class="sidebar">
+        <a href="feed.html" class="logo">
+            <img src="images/logo.png" alt="logo">
+        </a>
+        <!--profile image-->
+        <div class="profile">
+            <div class="profile-img">
+                <img src="images/profile.jpg" alt="Test">
+            </div>
+            <div class="name">
+                <h1>ukasha khursheed</h1>
+                <img src="images/verify.png" alt="verify">
+            </div>
+            <span>@student</span>
+        </div>
+        <!--about-->
+        <div class="about">
+            <!--box1-->
+            <div class="box">
+                <h3>54</h3>
+                <span>Posts</span>
+            </div>
+            <!--box2-->
+            <div class="box">
+                <h3>14.4k</h3>
+                <span>Followers</span>
+            </div>
+            <!--box3-->
+            <div class="box">
+                <h3>13</h3>
+                <span>Following</span>
+            </div>
+        </div>
+        
+        <!--menu-->
+        <div class="menu">
+            <a href="feed.html">
+                <span class="icon">
+                    <i class="ri-function-line"></i>
+                </span>
+                Feed
+            </a>
+
+            <a href="notification.html">
+                <span class="icon">
+                    <i class="ri-notification-4-line"></i>
+                </span>
+                Notification
+            </a>
+
+            <a href="explore.html">
+                <span class="icon">
+                    <i class="ri-search-line"></i>
+                </span>
+                Explore
+            </a>
+            
+            <a href="messages.html">
+                <span class="icon">
+                    <i class="ri-mail-unread-fill"></i>
+                </span>
+                Message
+            </a>
+            
+            <a href="stats.html">
+                <span class="icon">
+                    <i class="ri-bar-chart-2-fill"></i>
+                </span>
+                Stats
+            </a>
+            
+            <a href="setting.html" class="active">
+                <span class="icon">
+                    <i class="ri-settings-5-line"></i>
+                </span>
+                Settings
+            </a>
+            
+            <a href="index.html">
+                <span class="icon">
+                    <i class="ri-logout-box-r-line"></i>
+                </span>
+                Logout
+            </a>
+        </div>
+    </div>
+    
+    <!--main settings content-->
+    <div class="main-home">
+        <div class="header">
+            <!--search-->
+            <div class="search">
+                <i class="ri-search-line"></i>
+                <input type="text" name="" id="" placeholder="Search">
+            </div>
+            <div class="header-content">
+                <a href="notification.html" style="text-decoration: none; margin-top: 6px;">
+                    <i class="ri-notification-4-line"></i>
+                </a>
+                <a href="messages.html" style="text-decoration: none; margin-top: 6px;">
+                    <i class="ri-mail-unread-fill"></i>
+                </a>
+                <!--button-->
+                <a href="#" class="btn">
+                    <i class="ri-add-circle-fill"></i>
+                    <div class="btn-text">
+                        Add Photos
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="settings-title">
+            <h1>Settings</h1>
+        </div>
+        
+        <div class="settings-content">
+            <!-- Account Settings Section -->
+            <div class="settings-section">
+                <h2>Account Settings</h2>
+                
+                <div class="settings-option">
+                    <div class="option-icon">
+                        <i class="ri-user-line"></i>
+                    </div>
+                    <div class="option-details">
+                        <h3>Edit Profile</h3>
+                        <p>Change your profile photo, name, bio, and other personal details</p>
+                    </div>
+                    <div class="option-action">
+                        <i class="ri-arrow-right-s-line"></i>
+                    </div>
+                </div>
+                
+                <div class="settings-option">
+                    <div class="option-icon">
+                        <i class="ri-lock-line"></i>
+                    </div>
+                    <div class="option-details">
+                        <h3>Password & Security</h3>
+                        <p>Update your password and secure your account</p>
+                    </div>
+                    <div class="option-action">
+                        <i class="ri-arrow-right-s-line"></i>
+                    </div>
+                </div>
+                
+                <div class="settings-option">
+                    <div class="option-icon">
+                        <i class="ri-smartphone-line"></i>
+                    </div>
+                    <div class="option-details">
+                        <h3>Account Activity</h3>
+                        <p>See which devices have logged into your account</p>
+                    </div>
+                    <div class="option-action">
+                        <i class="ri-arrow-right-s-line"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Privacy Settings Section -->
+            <div class="settings-section">
+                <h2>Privacy</h2>
+                
+                <div class="settings-option">
+                    <div class="option-icon">
+                        <i class="ri-eye-line"></i>
+                    </div>
+                    <div class="option-details">
+                        <h3>Privacy Settings</h3>
+                        <p>Control who can see your content and interact with you</p>
+                    </div>
+                    <div class="option-action">
+                        <i class="ri-arrow-right-s-line"></i>
+                    </div>
+                </div>
+                
+                <div class="settings-option">
+                    <div class="option-icon">
+                        <i class="ri-user-unfollow-line"></i>
+                    </div>
+                    <div class="option-details">
+                        <h3>Blocked Accounts</h3>
+                        <p>Manage the list of accounts you've blocked</p>
+                    </div>
+                    <div class="option-action">
+                        <i class="ri-arrow-right-s-line"></i>
+                    </div>
+                </div>
+                
+                <div class="settings-option">
+                    <div class="option-icon">
+                        <i class="ri-notification-off-line"></i>
+                    </div>
+                    <div class="option-details">
+                        <h3>Muted Accounts</h3>
+                        <p>Manage the list of accounts you've muted</p>
+                    </div>
+                    <div class="option-action">
+                        <i class="ri-arrow-right-s-line"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- App Settings Section -->
+            <div class="settings-section">
+                <h2>App Settings</h2>
+                
+                <div class="settings-option">
+                    <div class="option-icon">
+                        <i class="ri-notification-2-line"></i>
+                    </div>
+                    <div class="option-details">
+                        <h3>Notifications</h3>
+                        <p>Choose which notifications you receive</p>
+                    </div>
+                    <div class="option-action">
+                        <i class="ri-arrow-right-s-line"></i>
+                    </div>
+                </div>
+                
+                <div class="settings-option">
+                    <div class="option-icon">
+                        <i class="ri-contrast-2-line"></i>
+                    </div>
+                    <div class="option-details">
+                        <h3>Appearance</h3>
+                        <p>Dark mode and theme settings</p>
+                    </div>
+                    <div class="option-toggle">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="settings-option">
+                    <div class="option-icon">
+                        <i class="ri-translate-2"></i>
+                    </div>
+                    <div class="option-details">
+                        <h3>Language</h3>
+                        <p>Change your language preferences</p>
+                    </div>
+                    <div class="option-action">
+                        <span class="current-option">English</span>
+                        <i class="ri-arrow-right-s-line"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Support Section -->
+            <div class="settings-section">
+                <h2>Support</h2>
+                
+                <div class="settings-option">
+                    <div class="option-icon">
+                        <i class="ri-question-line"></i>
+                    </div>
+                    <div class="option-details">
+                        <h3>Help Center</h3>
+                        <p>Get help with using the app</p>
+                    </div>
+                    <div class="option-action">
+                        <i class="ri-arrow-right-s-line"></i>
+                    </div>
+                </div>
+                
+                <div class="settings-option">
+                    <div class="option-icon">
+                        <i class="ri-feedback-line"></i>
+                    </div>
+                    <div class="option-details">
+                        <h3>Report a Problem</h3>
+                        <p>Let us know if something isn't working</p>
+                    </div>
+                    <div class="option-action">
+                        <i class="ri-arrow-right-s-line"></i>
+                    </div>
+                </div>
+                
+                <div class="settings-option">
+                    <div class="option-icon">
+                        <i class="ri-shield-check-line"></i>
+                    </div>
+                    <div class="option-details">
+                        <h3>Privacy Policy</h3>
+                        <p>Read our privacy policy</p>
+                    </div>
+                    <div class="option-action">
+                        <i class="ri-arrow-right-s-line"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Logout Button -->
+            <div class="settings-section">
+                <a style="text-decoration: none; color: #e74c3c;" href="index.html">
+                <button class="logout-btn">
+
+                        <i class="ri-logout-box-r-line"></i>
+                        Log Out
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add JavaScript for mobile menu toggle with icon change -->
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            const sidebar = document.querySelector('.sidebar');
+            const menuIcon = document.getElementById('menu-icon');
+            
+            sidebar.classList.toggle('active');
+            
+            // Change icon based on sidebar state
+            if (sidebar.classList.contains('active')) {
+                menuIcon.classList.remove('ri-menu-line');
+                menuIcon.classList.add('ri-close-line');
+            } else {
+                menuIcon.classList.remove('ri-close-line');
+                menuIcon.classList.add('ri-menu-line');
+            }
+        });
+    </script>
+</body>
+
+</html>
