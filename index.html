@@ -258,19 +258,20 @@
             <!-- Login Box -->
             <div class="login-box">
                 <div class="logo">
-                    <img src="images/logo.png" alt="Instagram" 
-                         onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 60\'><text x=\'10\' y=\'40\' font-family=\'Arial\' font-size=\'24\' font-weight=\'bold\'>Instagram</text></svg>'">
+                    <img src="images/logo.png" alt="Instagram"
+                        onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 200 60\'><text x=\'10\' y=\'40\' font-family=\'Arial\' font-size=\'24\' font-weight=\'bold\'>Instagram</text></svg>'">
                 </div>
 
                 <form onSubmit="event.preventDefault(); login();">
                     <div class="form-group">
-                        <input type="text" id="email" class="form-control" placeholder="Phone number, username, or email" required>
+                        <input type="text" id="email" class="form-control"
+                            placeholder="Phone number, username, or email" required>
                     </div>
                     <div class="form-group">
                         <input type="password" id="password" class="form-control" placeholder="Password" required>
                     </div>
                     <button type="submit" class="login-btn">
-                            Log In
+                        Log In
                     </button>
                 </form>
 
@@ -296,14 +297,14 @@
                 <p>Get the app.</p>
                 <div class="app-buttons">
                     <a href="#" class="app-button">
-                        <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png" 
-                             alt="App Store"
-                             onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 120 40\'><rect width=\'120\' height=\'40\' rx=\'8\' fill=\'%23000\'/><text x=\'30\' y=\'25\' font-family=\'Arial\' font-size=\'12\' fill=\'white\'>App Store</text></svg>'">
+                        <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png"
+                            alt="App Store"
+                            onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 120 40\'><rect width=\'120\' height=\'40\' rx=\'8\' fill=\'%23000\'/><text x=\'30\' y=\'25\' font-family=\'Arial\' font-size=\'12\' fill=\'white\'>App Store</text></svg>'">
                     </a>
                     <a href="#" class="app-button">
                         <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png"
-                             alt="Google Play"
-                             onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 120 40\'><rect width=\'120\' height=\'40\' rx=\'8\' fill=\'%23000\'/><text x=\'20\' y=\'25\' font-family=\'Arial\' font-size=\'12\' fill=\'white\'>Google Play</text></svg>'">
+                            alt="Google Play"
+                            onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 120 40\'><rect width=\'120\' height=\'40\' rx=\'8\' fill=\'%23000\'/><text x=\'20\' y=\'25\' font-family=\'Arial\' font-size=\'12\' fill=\'white\'>Google Play</text></svg>'">
                     </a>
                 </div>
             </div>
@@ -321,22 +322,22 @@
                     <a href="#" class="footer-link">Top Accounts</a>
                     <a href="#" class="footer-link">Hashtags</a>
                     <a href="#" class="footer-link">Locations</a>
-                    <a href="#" class="footer-link">Instagram Lite</a>
+                    <a href="#" class="footer-link">Instagram pro</a>
                 </div>
-                <p>© 2025 Instagram Clone</p>
+                <p>© 2025 INSTAGRAM Clone</p>
             </div>
         </div>
     </div>
 
     <script>
-        function login(){
+        function login() {
             let emailInput = document.getElementById('email').value;
             let passwordInput = document.getElementById('password').value;
             console.log(emailInput, passwordInput);
-            if (emailInput == "ukasha@gmail.com" && passwordInput == 12345678) {
+            if (emailInput == "ukasha@gmail.com" && passwordInput == 87654321) {
                 alert("Login successful!");
-                window.location.href = "feed.html"; 
-            }else{
+                window.location.href = "feed.html";
+            } else {
                 alert("Invalid email or password");
             }
         }
